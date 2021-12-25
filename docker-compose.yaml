@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+    server:
+        container_name: ${COMPOSE_PROJECT_NAME}_server
+        build: ./server
+        volumes:
+            - ./server:/usr/src/app/server
+            - ./package.json:/usr/src/app/package.json
+            - ./node_modules:/usr/src/app/node_modules
+            - ./.env:/usr/src/app/.env
+        ports:
+            - '$BACKEND_PORT:$BACKEND_PORT'
+        depends_on:
+            - mongo
+    mongo:
+        container_name: ${COMPOSE_PROJECT_NAME}_mongo
+        image: mongo
+        volumes: 
+            - ./.env:/.env
+            - ./dump:/dump
+            - ./mongorestore.sh:/docker-entrypoint-initdb.d/mongorestore.sh
+        ports:
+            - '$MONGO_PORT:$MONGO_PORT'
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: $MONGO_USERNAME
+            MONGO_INITDB_ROOT_PASSWORD: $MONGO_PASSWORD
