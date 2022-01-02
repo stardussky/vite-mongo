@@ -28,6 +28,7 @@ module.exports = {
         'no-empty-source': null,
         'no-descending-specificity': null,
         'at-rule-empty-line-before': null,
+        'scss/at-extend-no-missing-placeholder': null,
         'order/properties-alphabetical-order': null,
         'order/properties-order': [
             'content',

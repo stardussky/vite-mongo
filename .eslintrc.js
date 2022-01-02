@@ -2,6 +2,11 @@ module.exports = {
     env: {
         node: true,
     },
+    parser: 'vue-eslint-parser',
+    parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+    },
     extends: [
         'eslint:recommended',
         'standard',
